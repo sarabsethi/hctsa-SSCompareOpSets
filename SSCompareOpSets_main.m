@@ -25,6 +25,8 @@ redMat2 = TS_DataMat(:,opIdxs2);
 D = pdist2(redMat1',redMat2','correlation');
 D = 1 - abs(1-D);
 imagesc(D);
+colormap(BF_getcmap('redyellowgreen',10));
+colorbar;
 
 opNames1 = {Operations(opIdxs1).Name};
 opNames2 = {Operations(opIdxs2).Name};
@@ -36,8 +38,8 @@ opKeys2 = {Operations(opIdxs2).Keywords};
 
 fID = fopen('comparedOpCorrelations.txt','w');
 
-fprintf(fID,'Comparing 2 sets of operations\nSet1: %s \n\nSet2 %s\n\n',...
-    strjoin(opNames1,','),strjoin(opNames2,','));
+fprintf(fID,'Comparing 2 sets of operations\nSet1 (n = %i): %s \n\nSet2 (n = %i): %s\n\n',...
+    length(opNames1),strjoin(opNames1,','),length(opNames2),strjoin(opNames2,','));
 for i = 1:size(D,1)
    % Pick a row - corresponds to an operation from set 1
    D_row = D(i,:);

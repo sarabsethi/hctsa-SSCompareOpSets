@@ -1,8 +1,8 @@
-# Result text file 
-comparedOpCorrelations.txt
+
 
 # Avoid uploading large MATLAB generated files
-*.mat
+HCTSA*.mat
+
 *.asv
 
 
