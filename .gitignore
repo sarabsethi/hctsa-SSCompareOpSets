@@ -2,7 +2,6 @@
 
 # Avoid uploading large MATLAB generated files
 HCTSA*.mat
-*.mat
 *.asv
 
 
