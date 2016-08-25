@@ -47,4 +47,30 @@ for i = 1:length(clusters)
 end
 orderedNames = allNames(ord);
 set(gca,'Ytick',1:length(allNames),'YtickLabel',orderedNames);
-% colormap(BF_getcmap('redyellowblue',10));
+
+% opNames1 = {Operations(opIdxs1).Name};
+% opNames2 = {Operations(opIdxs2).Name};
+% 
+% opKeys1 = {Operations(opIdxs1).Keywords};
+% opKeys2 = {Operations(opIdxs2).Keywords};
+% 
+% fID = fopen('comparedOpCorrelations.txt','w');
+% 
+% fprintf(fID,'Comparing 2 sets of operations\nSet1 (n = %i): %s \n\nSet2 (n = %i): %s\n\n',...
+%     length(opNames1),strjoin(opNames1,','),length(opNames2),strjoin(opNames2,','));
+% for i = 1:size(D,1)
+%    % Pick a row - corresponds to an operation from set 1
+%    D_row = D(i,:);
+%    fprintf(fID,'Op %i : %s (%s)\n',i,cell2mat(opNames1(i)),cell2mat(opKeys1(i)));
+%    
+%    % Order operations from set 2 in descending correlation order
+%    [sortedD,sortIdx] = sort(D_row);
+%    sortedNames = opNames2(sortIdx);
+%    sortedKeys = opKeys2(sortIdx);
+%    
+%    % Print best correlated operations from set2
+%    for j = 1:min(length(sortedD),5)
+%       fprintf(fID,'%.3f - %s (%s)\n',sortedD(j),cell2mat(sortedNames(j)),cell2mat(sortedKeys(j)));
+%    end
+%    fprintf(fID,'\n');
+% end
