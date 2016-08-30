@@ -3,18 +3,18 @@ clear all;
 load('HCTSA_N.mat');
 
 % Load in operation set files - only important data is operation names
-fName1 = 'auto_chosen_ops_26_new.mat';
-fName2 = 'alexs_features.mat';
+fName1 = 'alexs_features.mat';
+fName2 = 'auto_chosen_ops_26_new.mat';
 opFile1 = load(fName1);
 opFile2 = load(fName2);
 
-matchNames1 = {opFile1.autoChosenOps.Name};
-matchNames2 = {opFile2.ops.Name};
-fullSetNames = {Operations.Name};
+fullSetNames1 = {opFile1.ops.Name};
+fullSetNames2 = {opFile2.autoChosenOps.Name};
+allOpNames = {Operations.Name};
 
 % Match the operations to those calculated in the data matrix
-opIdxs1 = find(ismember(fullSetNames, matchNames1));
-opIdxs2 = find(ismember(fullSetNames, matchNames2));
+opIdxs1 = find(ismember(allOpNames, fullSetNames1));
+opIdxs2 = find(ismember(allOpNames, fullSetNames2));
 
 % Create reduced data matrices using operation sets to be compared
 redMat1 = TS_DataMat(:,opIdxs1);
@@ -23,8 +23,8 @@ redMat2 = TS_DataMat(:,opIdxs2);
 % Create labels from the operation names
 opNames1 = {Operations(opIdxs1).Name};
 opNames2 = {Operations(opIdxs2).Name};
-opLabels1 = strcat('',opNames1,'\it S');
-opLabels2 = strcat('',opNames2,'\it A');
+opLabels1 = strcat('',opNames1,'\it A');
+opLabels2 = strcat('',opNames2,'\it S');
 allLabels = {opLabels1{:} , opLabels2{:}};
 allLabels = strrep(allLabels,'_','\_');
 
@@ -42,7 +42,7 @@ colors = BF_getcmap('dark2',9);
 for i = 1:length(clusters)
     mems = cell2mat(clusters(i));
     if length(mems) > 1
-    color = colors(datasample(1:length(colors),1),:);
+    color = colors(mod(i,length(colors)-1)+1,:);
     colorStr = ['\color[rgb]{',num2str(color(1)),' ',num2str(color(2)),' ',num2str(color(3)),'}'];
     
     for j = 1:length(mems)
