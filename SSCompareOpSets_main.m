@@ -4,7 +4,7 @@ load('HCTSA_N.mat');
 
 % Load in operation set files - only important data is operation names
 fName1 = 'alexs_features.mat';
-fName2 = 'auto_chosen_ops_26_new.mat';
+fName2 = 'auto_chosen_ops_179.mat';
 opFile1 = load(fName1);
 opFile2 = load(fName2);
 
