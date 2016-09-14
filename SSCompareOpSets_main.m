@@ -4,7 +4,7 @@ load('HCTSA_N.mat');
 
 % Load in operation set files - only important data is operation names
 fName1 = 'alexs_features.mat';
-fName2 = 'auto_chosen_ops_179.mat';
+fName2 = 'FINAL_auto_chosen_ops_172.mat';
 opFile1 = load(fName1);
 opFile2 = load(fName2);
 
@@ -66,7 +66,11 @@ opKeys2 = {Operations(opIdxs2).Keywords};
 
 fprintf(fID,'Comparing 2 sets of operations\nSet1 (n = %i): %s \n\nSet2 (n = %i): %s\n\n',...
     length(opNames1),strjoin(opNames1,','),length(opNames2),strjoin(opNames2,','));
-for i = 1:size(D_red,1)
+
+[~,sIdx] = sort(min(D_red'),'descend');
+
+for x = 1:size(D_red,1)
+    i = sIdx(x);
    % Pick a row - corresponds to an operation from set 1
    D_row = D_red(i,:);
    fprintf(fID,'Op %i : %s (%s)\n',i,cell2mat(opNames1(i)),cell2mat(opKeys1(i)));
